@@ -43,7 +43,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.R;
 
 // TODO: should Event be Parcelable so it can be passed via Intents?
 public class Event implements Cloneable {
@@ -61,8 +61,9 @@ public class Event implements Cloneable {
      * sorted correctly with respect to events that are >24 hours (and
      * therefore show up in the allday area).
      */
+    //private static final String SORT_EVENTS_BY ="begin ASC, end DESC, title ASC";
     private static final String SORT_EVENTS_BY =
-            "begin ASC, end DESC, title ASC";
+            "begin ASC, end DESC, _id ASC";
     private static final String SORT_ALLDAY_BY =
             "startDay ASC, endDay DESC, title ASC";
     private static final String DISPLAY_AS_ALLDAY = "dispAllday";
@@ -90,6 +91,7 @@ public class Event implements Cloneable {
             Events.GUESTS_CAN_MODIFY,        // 19
             Instances.ALL_DAY + "=1 OR (" + Instances.END + "-" + Instances.BEGIN + ")>="
                     + DateUtils.DAY_IN_MILLIS + " AS " + DISPLAY_AS_ALLDAY, // 20
+            Instances.DESCRIPTION            //21
     };
     private static final String EVENTS_WHERE = DISPLAY_AS_ALLDAY + "=0";
     private static final String ALLDAY_WHERE = DISPLAY_AS_ALLDAY + "=1";
@@ -114,6 +116,7 @@ public class Event implements Cloneable {
     private static final int PROJECTION_ORGANIZER_INDEX = 18;
     private static final int PROJECTION_GUESTS_CAN_INVITE_OTHERS_INDEX = 19;
     private static final int PROJECTION_DISPLAY_AS_ALLDAY = 20;
+    private static final int PROJECTION_DESCRIPTION_INDEX = 21;
     private static String mNoTitleString;
     private static int mNoColorColor;
 
@@ -122,6 +125,7 @@ public class Event implements Cloneable {
     public int color;
     public CharSequence title;
     public CharSequence location;
+    public CharSequence description;
     public boolean allDay;
     public String organizer;
     public boolean guestsCanModify;
@@ -158,6 +162,7 @@ public class Event implements Cloneable {
         e.title = null;
         e.color = 0;
         e.location = null;
+        e.description = null;
         e.allDay = false;
         e.startDay = 0;
         e.endDay = 0;
@@ -258,9 +263,9 @@ public class Event implements Cloneable {
      *
      * @param cr The ContentResolver to use for the query
      * @param projection The columns to return
-     * @param begin The start of the time range to query in UTC millis since
+     * @param startDay The start of the time range to query in UTC millis since
      *            epoch
-     * @param end The end of the time range to query in UTC millis since
+     * @param endDay The end of the time range to query in UTC millis since
      *            epoch
      * @param selection Filter on the query as an SQL WHERE statement
      * @param selectionArgs Args to replace any '?'s in the selection
@@ -339,6 +344,7 @@ public class Event implements Cloneable {
         e.id = cEvents.getLong(PROJECTION_EVENT_ID_INDEX);
         e.title = cEvents.getString(PROJECTION_TITLE_INDEX);
         e.location = cEvents.getString(PROJECTION_LOCATION_INDEX);
+        e.description = cEvents.getString(PROJECTION_DESCRIPTION_INDEX);
         e.allDay = cEvents.getInt(PROJECTION_ALL_DAY_INDEX) != 0;
         e.organizer = cEvents.getString(PROJECTION_ORGANIZER_INDEX);
         e.guestsCanModify = cEvents.getInt(PROJECTION_GUESTS_CAN_INVITE_OTHERS_INDEX) != 0;
@@ -509,6 +515,7 @@ public class Event implements Cloneable {
         e.title = title;
         e.color = color;
         e.location = location;
+        e.description = description;
         e.allDay = allDay;
         e.startDay = startDay;
         e.endDay = endDay;
@@ -531,6 +538,7 @@ public class Event implements Cloneable {
         dest.title = title;
         dest.color = color;
         dest.location = location;
+        dest.description = description;
         dest.allDay = allDay;
         dest.startDay = startDay;
         dest.endDay = endDay;
@@ -552,6 +560,7 @@ public class Event implements Cloneable {
         Log.e("Cal", "+     color = " + color);
         Log.e("Cal", "+     title = " + title);
         Log.e("Cal", "+  location = " + location);
+        Log.e("Cal", "+description="  + description);
         Log.e("Cal", "+    allDay = " + allDay);
         Log.e("Cal", "+  startDay = " + startDay);
         Log.e("Cal", "+    endDay = " + endDay);

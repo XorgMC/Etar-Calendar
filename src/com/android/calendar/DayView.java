@@ -54,6 +54,8 @@ import android.text.format.DateFormat;
 import android.text.format.DateUtils;
 import android.text.format.Time;
 import android.text.style.StyleSpan;
+import android.text.style.TextAppearanceSpan;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -93,7 +95,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.R;
 
 /**
  * View for multi-day view. So far only 1 and 7 day have been tested.
@@ -2850,10 +2852,19 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
                             bob.length(), 0);
                 bob.append(' ');
             }
-            if (event.location != null) {
-                bob.append(drawTextSanitizer(event.location.toString(),
-                        MAX_EVENT_TEXT_LEN - bob.length()));
+            //TODO: Pferd anzeigen
+            //event.location
+            if (event.description != null) {
+                bob.append("\n");
+                int lengthBefore = bob.length();
+                bob.append(drawTextSanitizer(event.description.toString(), MAX_EVENT_TEXT_LEN - bob.length()));
+                bob.setSpan(new TextAppearanceSpan(mContext, R.style.KalenderPferd), lengthBefore, bob.length(), 0); //TODO: Pferde machen
             }
+
+            /*if (event.location != null) {
+                bob.append(drawTextSanitizer(event.location.toString(),
+                        MAX_EVENT_TEXT_LEN - bob.length())); TODO: Can switch on location
+            }*/
 
             switch (event.selfAttendeeStatus) {
                 case Attendees.ATTENDEE_STATUS_INVITED:

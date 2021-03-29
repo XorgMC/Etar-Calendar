@@ -56,7 +56,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.R;
 
 import static com.android.calendar.alerts.AlertService.ALERT_CHANNEL_ID;
 

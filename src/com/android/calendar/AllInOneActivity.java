@@ -89,9 +89,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import ws.xsoh.etar.R;
-import ws.xsoh.etar.databinding.AllInOneMaterialBinding;
-import ws.xsoh.etar.databinding.DateRangeTitleBinding;
+import de.xorg.rscalendar.R;
+import de.xorg.rscalendar.databinding.AllInOneMaterialBinding;
+import de.xorg.rscalendar.databinding.DateRangeTitleBinding;
 
 import static android.provider.CalendarContract.Attendees.ATTENDEE_STATUS;
 import static android.provider.CalendarContract.EXTRA_EVENT_ALL_DAY;
@@ -1058,11 +1058,17 @@ public class AllInOneActivity extends AbstractCalendarActivity implements EventH
                 }
                 break;
             case ViewType.WEEK:
-            default:
                 mNavigationView.getMenu().findItem(R.id.week_menu_item).setChecked(true);
                 frag = new DayFragment(timeMillis, Utils.getDaysPerWeek(this));
                 if (mIsTabletConfig) {
                     mToolbar.setTitle(R.string.week_view);
+                }
+                break;
+            default:
+                mNavigationView.getMenu().findItem(R.id.day_menu_item).setChecked(true);
+                frag = new DayFragment(timeMillis, 1);
+                if (mIsTabletConfig) {
+                    mToolbar.setTitle(R.string.day_view);
                 }
                 break;
         }

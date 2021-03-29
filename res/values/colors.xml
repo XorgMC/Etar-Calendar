@@ -19,9 +19,9 @@
 -->
 <resources>
 
-    <color name="colorPrimary">#41c3b1</color>
-    <color name="colorPrimaryDark">#388d7f</color>
-    <color name="colorAccent">#1dc1ab</color>
+    <color name="colorPrimary">#ea0a8f</color><!-- #41c3b1-->
+    <color name="colorPrimaryDark">#b20061</color>
+    <color name="colorAccent">#ea0a8f</color>
     <color name="colorOrangePrimary">#f1922d</color>
     <color name="colorOrangePrimaryDark">#b36f28</color>
     <color name="colorOrangeAccent">#de7302</color>
@@ -403,29 +403,46 @@
 
     <!-- default calendar/event color palette -->
     <array name="defaultCalendarColors">
-        <item>#FFD1270C</item>
-        <item>#FF11AB64</item>
-        <item>#FF1454B9</item>
-        <item>#FF4EA719</item>
-        <item>#FF62B492</item>
-        <item>#FF6365CC</item>
-        <item>#FF6E96B9</item>
-        <item>#FF6EB3B9</item>
-        <item>#FF7449B5</item>
+        <item>#FFEA1500</item>
+        <item>#FF00BE65</item>
+        <item>#FF004FCE</item>
+        <item>#FF4AB907</item>
+        <item>#FF58BE94</item>
+        <item>#FF5658D9</item>
+        <item>#FF6597C2</item>
+        <item>#FF65BBC2</item>
+        <item>#FF713CC3</item>
         <item>#FF8363CC</item>
-        <item>#FF85B03C</item>
-        <item>#FF8A4D38</item>
+        <item>#FF7E56D9</item>
+        <item>#FF94482E</item>
         <item>#FF9B9B9B</item>
-        <item>#FF9E41B8</item>
-        <item>#FFA29496</item>
+        <item>#FFA632C7</item>
+        <item>#FFA49295</item>
         <item>#FFA37C82</item>
-        <item>#FFA63D36</item>
-        <item>#FFC55C7E</item>
-        <item>#FFC61600</item>
-        <item>#FFC81E02</item>
-        <item>#FFC89D2D</item>
-        <item>#FFC9B64C</item>
-        <item>#FFCC3F00</item>
-        <item>#FFCC770C</item>
+        <item>#FFB43128</item>
+        <item>#FFD24F79</item>
+        <item>#FFDF0300</item>
+        <item>#FFE10C00</item>
+        <item>#FFDBA61A</item>
+        <item>#FFD9C13C</item>
+        <item>#FFe63500</item>
+        <item>#FFE47A00</item>
+
+        <item>#FF00FFFF</item>
+        <item>#FF000000</item>
+        <item>#FF0000FF</item>
+        <item>#FFFF00FF</item>
+        <item>#FF808080</item>
+        <item>#FF008000</item>
+        <item>#FF00FF00</item>
+        <item>#FF800000</item>
+        <item>#FF000080</item>
+        <item>#FF808000</item>
+        <item>#FF800080</item>
+        <item>#FFFF0000</item>
+        <item>#FFC0C0C0</item>
+        <item>#FF008080</item>
+        <item>#FFFFFFFF</item>
+        <item>#FFFFFF00</item>
     </array>
 </resources>

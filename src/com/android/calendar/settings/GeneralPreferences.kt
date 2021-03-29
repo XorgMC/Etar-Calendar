@@ -43,7 +43,7 @@ import com.android.calendar.alerts.AlertReceiver
 import com.android.calendar.event.EventViewUtils
 import com.android.timezonepicker.TimeZoneInfo
 import com.android.timezonepicker.TimeZonePickerUtils
-import ws.xsoh.etar.R
+import de.xorg.rscalendar.R
 import java.util.*
 
 class GeneralPreferences : PreferenceFragmentCompat(),
@@ -540,7 +540,7 @@ class GeneralPreferences : PreferenceFragmentCompat(),
         const val WEEK_START_MONDAY = "2"
         // Default preference values
         const val DEFAULT_DEFAULT_START = "-2"
-        const val DEFAULT_START_VIEW = CalendarController.ViewType.WEEK
+        const val DEFAULT_START_VIEW = CalendarController.ViewType.DAY
         const val DEFAULT_DETAILED_VIEW = CalendarController.ViewType.DAY
         const val DEFAULT_SHOW_WEEK_NUM = false
         // This should match the XML file.

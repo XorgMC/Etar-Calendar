@@ -22,8 +22,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.android.calendar.DynamicTheme
-import ws.xsoh.etar.R
-import ws.xsoh.etar.databinding.SimpleFrameLayoutMaterialBinding
+import de.xorg.rscalendar.R
+import de.xorg.rscalendar.databinding.SimpleFrameLayoutMaterialBinding
 
 
 const val EXTRA_SHOW_FRAGMENT = "settingsShowFragment"

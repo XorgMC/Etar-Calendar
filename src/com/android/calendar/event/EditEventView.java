@@ -101,7 +101,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.R;
 
 public class EditEventView implements View.OnClickListener, DialogInterface.OnCancelListener,
         DialogInterface.OnClickListener, OnItemSelectedListener,
@@ -430,6 +430,8 @@ public class EditEventView implements View.OnClickListener, DialogInterface.OnCa
                 mTzPickerUtils.getGmtDisplayName(mActivity, mTimezone, eventStartTime, true);
 
         mTimezoneTextView.setText(displayName);
+        mTimezoneTextView.setVisibility(View.GONE);
+        mTimezoneButton.setVisibility(View.GONE);
         mTimezoneButton.setText(displayName);
     }
 
@@ -929,8 +931,8 @@ public class EditEventView implements View.OnClickListener, DialogInterface.OnCa
             int buttonToCheck = EventInfoFragment
                     .findButtonIdForResponse(model.mSelfAttendeeStatus);
             mResponseRadioGroup.check(buttonToCheck); // -1 clear all radio buttons
-            mResponseRadioGroup.setVisibility(View.VISIBLE);
-            responseLabel.setVisibility(View.VISIBLE);
+            //mResponseRadioGroup.setVisibility(View.VISIBLE);
+            //responseLabel.setVisibility(View.VISIBLE);
         } else {
             responseLabel.setVisibility(View.GONE);
             mResponseRadioGroup.setVisibility(View.GONE);
@@ -1189,7 +1191,7 @@ public class EditEventView implements View.OnClickListener, DialogInterface.OnCa
             }
             mRemindersGroup.setVisibility(View.VISIBLE);
 
-            mLocationGroup.setVisibility(View.VISIBLE);
+            //mLocationGroup.setVisibility(View.VISIBLE);
             mDescriptionGroup.setVisibility(View.VISIBLE);
         }
         setAllDayViewsVisibility(mAllDayCheckBox.isChecked());
@@ -1404,7 +1406,7 @@ public class EditEventView implements View.OnClickListener, DialogInterface.OnCa
             }
             mStartTimeButton.setVisibility(View.VISIBLE);
             mEndTimeButton.setVisibility(View.VISIBLE);
-            mTimezoneRow.setVisibility(View.VISIBLE);
+            //mTimezoneRow.setVisibility(View.VISIBLE);
         }
 
         // If this is a new event, and if availability has not yet been
@@ -1473,6 +1475,7 @@ public class EditEventView implements View.OnClickListener, DialogInterface.OnCa
             return;
         }
 
+        mScrollView.setBackgroundColor(displayColor);
         setSpinnerBackgroundColor(displayColor);
 
         mModel.mCalendarId = calendarId;

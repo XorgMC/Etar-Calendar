@@ -122,8 +122,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import ws.xsoh.etar.BuildConfig;
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.BuildConfig;
+import de.xorg.rscalendar.R;
 
 import static android.provider.CalendarContract.EXTRA_EVENT_ALL_DAY;
 import static android.provider.CalendarContract.EXTRA_EVENT_BEGIN_TIME;

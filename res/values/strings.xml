@@ -15,9 +15,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- This is the app label used for alert notifications -->
-    <string name="standalone_app_label" translatable="false">Etar</string>
+    <string name="standalone_app_label" translatable="false">RS-Kalender</string>
     <!-- This is the label underneath the icon for Calendar -->
-    <string name="app_label">Calendar</string>
+    <string name="app_label">RS-Kalender</string>
 
     <!-- Shared Labels. These labels are shared among the activities. -->
     <skip/>
@@ -162,7 +162,7 @@
     <!-- Default value of Where field (as a hint to the user)[CHAR LIMIT=15] -->
     <string name="hint_where">"Location"</string>
     <!-- Default value of Description field (as a hint to the user) [CHAR LIMIT=15]-->
-    <string name="hint_description">"Description"</string>
+    <string name="hint_description">"Pferd"</string>
     <!-- Default value of Attendees/Guests field (as a hint to the user) [CHAR LIMIT=10] -->
     <string name="hint_attendees">"Guests"</string>
     <!-- Toast message displayed when a new event is created -->
@@ -505,7 +505,7 @@
     <!-- Title of dialog for setting the default number of reminder minutes -->
     <string name="preferences_default_reminder_dialog">Default reminder time</string>
     <!-- Default value for the number of reminder minutes -->
-    <string name="preferences_default_reminder_default">10</string>
+    <string name="preferences_default_reminder_default" translatable="false">-1</string>
     <!-- Settings check box label to keep Calendar in a fixed 'home' time zone [CHAR LIMIT = 18] -->
     <string name="preferences_use_home_tz_title">Use home time zone</string>
     <!-- Settings description of what setting Calendar to use a fixed 'home' time

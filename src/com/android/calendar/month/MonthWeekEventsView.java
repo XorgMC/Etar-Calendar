@@ -59,7 +59,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.R;
 
 public class MonthWeekEventsView extends SimpleWeekView {
 

@@ -37,7 +37,7 @@ import com.android.calendar.CalendarController.EventType;
 import com.android.calendar.Utils;
 import com.android.calendar.selectcalendars.CalendarColorCache.OnCalendarColorsLoadedListener;
 
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.R;
 
 /**
  * TODO: This fragment is still used in the tablet design

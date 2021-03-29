@@ -43,7 +43,8 @@
             android:id="@+id/timezone_button_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="timezone_icon,timezone_button" />
+            app:constraint_referenced_ids="timezone_icon,timezone_button"
+            android:visibility="gone"/>
 
         <!-- CALENDARS SELECTOR for new events -->
         <com.google.android.material.textfield.TextInputEditText
@@ -164,8 +165,10 @@
             style="@style/TextAppearance.EditEvent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginStart="12dp"
             android:gravity="center_vertical"
+
             android:text="@string/edit_event_all_day_label"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -180,6 +183,7 @@
             android:gravity="center_vertical|end"
             app:layout_constraintBottom_toBottomOf="@+id/is_all_day_label"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
             app:layout_constraintTop_toTopOf="@+id/is_all_day_label"
             app:layout_constraintVertical_bias="0.4" />
 
@@ -205,7 +209,7 @@
             android:contentDescription="@string/accessibility_pick_start_date"
             android:singleLine="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/is_all_day_label" />
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
 
         <Button
             android:id="@+id/end_date"
@@ -214,6 +218,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:background="?android:attr/selectableItemBackground"
+            android:textColor="@android:color/darker_gray"
             android:contentDescription="@string/accessibility_pick_end_date"
             android:singleLine="true"
             app:layout_constraintStart_toStartOf="parent"
@@ -251,9 +256,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:src="@drawable/ic_outline_public"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/timezone_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/timezone_button" />
+            app:layout_constraintTop_toTopOf="@+id/timezone_button"
+            tools:visibility="gone" />
 
         <Button
             android:id="@+id/timezone_button"
@@ -267,21 +274,22 @@
             android:gravity="start|center_vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/timezone_icon"
-            app:layout_constraintTop_toBottomOf="@+id/end_date" />
+            app:layout_constraintTop_toBottomOf="@+id/end_date"
+            tools:visibility="gone" />
 
         <View
             android:id="@+id/view7"
             style="@style/EditEventSeparator"
-            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timezone_button" />
+            app:layout_constraintTop_toBottomOf="@+id/end_date" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/response_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="view7,response_row" />
+            android:visibility="gone"
+            app:constraint_referenced_ids="response_row" />
 
         <LinearLayout
             android:id="@+id/response_row"
@@ -295,6 +303,7 @@
             app:layout_constraintBottom_toTopOf="@+id/organizer_row"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/view7">
 
             <TextView
@@ -305,6 +314,7 @@
                 android:gravity="center_vertical"
                 android:paddingStart="4dp"
                 android:paddingEnd="0dp"
+                android:visibility="gone"
                 android:text="@string/view_event_response_label" />
 
             <RadioGroup
@@ -312,6 +322,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:paddingTop="5dip">
 
                 <RadioButton
@@ -321,6 +332,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
+                    android:visibility="gone"
                     android:text="@string/response_yes" />
 
                 <RadioButton
@@ -330,6 +342,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
+                    android:visibility="gone"
                     android:text="@string/response_maybe" />
 
                 <RadioButton
@@ -339,6 +352,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
+                    android:visibility="gone"
                     android:text="@string/response_no" />
             </RadioGroup>
         </LinearLayout>
@@ -353,6 +367,7 @@
             android:focusable="true"
             android:minHeight="48dip"
             android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/response_row">
@@ -372,19 +387,20 @@
 
         </LinearLayout>
 
-        <View
+        <!-- <View
             android:id="@+id/view2"
             style="@style/EditEventSeparator"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/organizer_row" />
+            app:layout_constraintTop_toBottomOf="@+id/organizer_row" />-->
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/add_attendees_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="attendees_icon,add_attendees_row" />
+            app:constraint_referenced_ids="attendees_icon,add_attendees_row"
+            android:visibility="gone"/>
 
         <!-- Guests -->
         <ImageView
@@ -395,7 +411,8 @@
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_outline_person_add"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintTop_toBottomOf="@+id/view7"
+            tools:visibility="gone" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/add_attendees_row"
@@ -405,7 +422,7 @@
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/attendees_icon"
-            app:layout_constraintTop_toBottomOf="@+id/view2">
+            app:layout_constraintTop_toBottomOf="@+id/view7">
 
             <com.android.ex.chips.RecipientEditTextView
                 android:id="@+id/attendees"
@@ -414,7 +431,8 @@
                 android:layout_marginTop="2dip"
                 android:hint="@string/hint_attendees"
                 android:imeOptions="actionNext"
-                android:inputType="textEmailAddress|textMultiLine|textCapWords" />
+                android:inputType="textEmailAddress|textMultiLine|textCapWords"
+                tools:visibility="gone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- WHERE -->
@@ -423,10 +441,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
             android:src="@drawable/ic_outline_place"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/where_row" />
+            app:layout_constraintTop_toBottomOf="@+id/view7" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/where_row"
@@ -434,6 +453,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="32dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/where_icon"
             app:layout_constraintTop_toBottomOf="@+id/add_attendees_row">
@@ -443,20 +463,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_where"
+                android:visibility="gone"
                 android:imeOptions="actionDone"
                 android:inputType="textAutoCorrect|textCapSentences"
                 android:minHeight="48dip"
                 android:singleLine="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Description -->
+        <!-- Description android:src="@drawable/ic_outline_notes" -->
         <ImageView
             android:id="@+id/description_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="22dp"
-            android:src="@drawable/ic_outline_notes"
+            android:src="@drawable/ic_horse"
+            android:width="24dp"
+            android:height="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/description_row" />
 
@@ -468,7 +491,7 @@
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/description_icon"
-            app:layout_constraintTop_toBottomOf="@+id/where_row">
+            app:layout_constraintTop_toBottomOf="@+id/view7">
 
             <EditText
                 android:id="@+id/description"
@@ -564,6 +587,7 @@
             style="@style/EditEventSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/reminder_add" />
 
         <!-- PRESENCE - Show me as [busy | available] -->
@@ -575,6 +599,7 @@
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_outline_business_center"
             app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/view5" />
 
         <Spinner
@@ -585,6 +610,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="32dp"
             android:contentDescription="@string/accessibility_reminder_showmeas"
+            android:visibility="gone"
             android:entries="@array/availability"
             android:prompt="@string/presence_label"
             app:layout_constraintBottom_toBottomOf="@+id/availability_icon"
@@ -597,6 +623,7 @@
             style="@style/EditEventSeparator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/availability_icon" />
 
         <!-- PRIVACY -->
@@ -606,6 +633,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
             android:layout_marginBottom="20dp"
             android:src="@drawable/ic_outline_lock"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -619,6 +647,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="32dp"
+            android:visibility="gone"
             android:contentDescription="@string/accessibility_reminder_privacy"
             android:entries="@array/visibility"
             android:prompt="@string/privacy_label"
@@ -673,6 +702,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="7"
+            android:visibility="gone"
             android:gravity="start|center_vertical" />
 
         <TextView
@@ -681,6 +711,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:visibility="gone"
             android:gravity="end|center_vertical" />
     </LinearLayout>
 
@@ -701,6 +732,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="7"
+            android:visibility="gone"
             android:gravity="start|center_vertical" />
 
         <TextView
@@ -709,6 +741,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:visibility="gone"
             android:gravity="end|center_vertical" />
     </LinearLayout>
 
@@ -729,7 +762,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dip"
-            android:layout_marginRight="24dip" />
+            android:layout_marginRight="24dip"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </LinearLayout>

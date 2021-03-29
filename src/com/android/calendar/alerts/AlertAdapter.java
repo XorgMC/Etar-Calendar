@@ -32,7 +32,7 @@ import com.android.calendar.Utils;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.R;
 
 public class AlertAdapter extends ResourceCursorAdapter {
 
@@ -109,7 +109,7 @@ public class AlertAdapter extends ResourceCursorAdapter {
         if (location == null || location.length() == 0) {
             whereView.setVisibility(View.GONE);
         } else {
-            whereView.setText(location);
+            whereView.setText("B" + location);
             whereView.setVisibility(View.VISIBLE);
         }
     }

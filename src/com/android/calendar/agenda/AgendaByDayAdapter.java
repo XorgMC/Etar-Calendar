@@ -38,7 +38,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Locale;
 
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.R;
 
 public class AgendaByDayAdapter extends BaseAdapter {
     static final int TYPE_LAST = 2;
@@ -256,7 +256,7 @@ public class AgendaByDayAdapter extends BaseAdapter {
             if (AgendaWindowAdapter.BASICLOG) {
                 title.setText(title.getText() + " P:" + position);
             } else {
-                title.setText(title.getText());
+                title.setText("C" + title.getText());
             }
 
             // if event in the past or started already, un-bold the title and set the background

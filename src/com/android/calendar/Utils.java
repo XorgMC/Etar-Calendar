@@ -75,8 +75,8 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ws.xsoh.etar.BuildConfig;
-import ws.xsoh.etar.R;
+import de.xorg.rscalendar.BuildConfig;
+import de.xorg.rscalendar.R;
 
 import static android.provider.CalendarContract.EXTRA_EVENT_BEGIN_TIME;
 
