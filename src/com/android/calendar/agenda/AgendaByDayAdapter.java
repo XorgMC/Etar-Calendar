@@ -256,7 +256,7 @@ public class AgendaByDayAdapter extends BaseAdapter {
             if (AgendaWindowAdapter.BASICLOG) {
                 title.setText(title.getText() + " P:" + position);
             } else {
-                title.setText("C" + title.getText());
+                title.setText(title.getText());
             }
 
             // if event in the past or started already, un-bold the title and set the background

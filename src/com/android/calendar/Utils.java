@@ -232,6 +232,35 @@ public class Utils {
         }
     }
 
+
+    /**
+     * Gets Calendar Name from ID
+     * TODO: Cache somehow
+     */
+    public static String getCalendarNameForID(Context c, int id) {
+        Cursor cursor;
+        if (android.os.Build.VERSION.SDK_INT <= 7) cursor = c.getContentResolver().query(Uri.parse("content://calendar/calendars"), new String[] { "_id", "displayName" }, null, null, null);
+        else if (android.os.Build.VERSION.SDK_INT <= 14) cursor = c.getContentResolver().query(Uri.parse("content://com.android.calendar/calendars"), new String[] { "_id", "displayName" }, null, null, null);
+        else  cursor = c.getContentResolver().query(Uri.parse("content://com.android.calendar/calendars"), new String[] { "_id", "calendar_displayName" }, null, null, null);
+
+        // Get calendars name
+        Log.d("RSC-StupidUtils", "Cursor count " + cursor.getCount());
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            String[] calendarNames = new String[cursor.getCount()];
+            // Get calendars id
+            int calendarIds[] = new int[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                if(cursor.getInt(0) == id) return cursor.getString(1);
+                cursor.moveToNext();
+            }
+        } else {
+            Log.e("RSC-StupidUtils", "No calendar found in the device");
+        }
+        return "?UNKNOWN";
+    }
+
+
     /**
      * Gets the intent action for telling the widget to update.
      */

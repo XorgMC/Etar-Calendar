@@ -30,7 +30,8 @@
         android:layout_rowSpan="1"
         android:layout_columnSpan="3"
         android:layout_width="match_parent" />
-    <com.android.calendar.ColorChipView
+
+    <!-- <com.android.calendar.ColorChipView
         android:id="@+id/agenda_item_color"
         android:layout_column="0"
         android:layout_row="1"
@@ -41,7 +42,26 @@
         android:layout_marginTop="8dip"
         android:layout_marginBottom="8dip"
         android:layout_marginLeft="16dip"
-        android:layout_marginRight="8dip" />
+        android:layout_marginRight="8dip" />-->
+
+    <TextView
+        android:layout_column="0"
+        android:layout_row="1"
+        android:layout_rowSpan="1"
+        android:id="@+id/agenda_item_color"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dip"
+        android:layout_marginBottom="8dip"
+        android:layout_marginLeft="8dip"
+        android:layout_marginRight="16dip"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/agenda_circle"
+        android:gravity="center"
+        android:text="A"
+        android:textColor="#FFFFFF"
+        android:textSize="28dp"
+        android:paddingBottom="2dp"/>
 
     <LinearLayout
         android:id="@+id/agenda_item_text_container"

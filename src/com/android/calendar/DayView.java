@@ -3526,7 +3526,9 @@ public class DayView extends View implements View.OnCreateContextMenuListener,
         p.setColor(color);
         int alpha = p.getAlpha();
         p.setAlpha(mEventsAlpha);
+
         canvas.drawRect(r, p);
+
         p.setAlpha(alpha);
         p.setStyle(Style.FILL);
 

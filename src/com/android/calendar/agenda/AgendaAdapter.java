@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
 import android.provider.CalendarContract.Events;
 import android.provider.CalendarContract.Attendees;
 import android.text.TextUtils;
@@ -32,12 +33,13 @@ import android.widget.LinearLayout;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
-import com.android.calendar.ColorChipView;
 import com.android.calendar.DynamicTheme;
 import com.android.calendar.Utils;
 
 import java.util.Formatter;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 
 import de.xorg.rscalendar.R;
@@ -61,6 +63,7 @@ public class AgendaAdapter extends ResourceCursorAdapter {
     private float mScale;
     private int COLOR_CHIP_ALL_DAY_HEIGHT;
     private int COLOR_CHIP_HEIGHT;
+    Map<Integer,String> mCalendarNames = new HashMap<Integer,String>();
 
     public AgendaAdapter(Context context, int resource) {
         super(context, resource, null);
@@ -106,7 +109,8 @@ public class AgendaAdapter extends ResourceCursorAdapter {
             holder.textContainer = (LinearLayout)
                     view.findViewById(R.id.agenda_item_text_container);
             holder.selectedMarker = view.findViewById(R.id.selected_marker);
-            holder.colorChip = (ColorChipView)view.findViewById(R.id.agenda_item_color);
+            //holder.colorChip = (ColorChipView)view.findViewById(R.id.agenda_item_color);
+            holder.colorChip = (TextView) view.findViewById(R.id.agenda_item_color);
         }
 
         holder.startTimeMilli = cursor.getLong(AgendaWindowAdapter.INDEX_BEGIN);
@@ -118,27 +122,27 @@ public class AgendaAdapter extends ResourceCursorAdapter {
             holder.title.setTextColor(mDeclinedColor);
             holder.when.setTextColor(mWhereDeclinedColor);
             holder.where.setTextColor(mWhereDeclinedColor);
-            holder.colorChip.setDrawStyle(ColorChipView.DRAW_FADED);
+            //holder.colorChip.setDrawStyle(ColorChipView.DRAW_FADED);
         } else {
             holder.title.setTextColor(mStandardColor);
             holder.when.setTextColor(mWhereColor);
             holder.where.setTextColor(mWhereColor);
-            if (selfAttendeeStatus == Attendees.ATTENDEE_STATUS_INVITED) {
+            /*if (selfAttendeeStatus == Attendees.ATTENDEE_STATUS_INVITED) {
                 holder.colorChip.setDrawStyle(ColorChipView.DRAW_BORDER);
             } else {
                 holder.colorChip.setDrawStyle(ColorChipView.DRAW_FULL);
-            }
+            }*/
         }
 
         // Set the size of the color chip
-        ViewGroup.LayoutParams params = holder.colorChip.getLayoutParams();
+        /*ViewGroup.LayoutParams params = holder.colorChip.getLayoutParams();
         if (allDay) {
             params.height = COLOR_CHIP_ALL_DAY_HEIGHT;
         } else {
             params.height = COLOR_CHIP_HEIGHT;
 
         }
-        holder.colorChip.setLayoutParams(params);
+        holder.colorChip.setLayoutParams(params);*/
 
         // Deal with exchange events that the owner cannot respond to
         int canRespond = cursor.getInt(AgendaWindowAdapter.INDEX_CAN_ORGANIZER_RESPOND);
@@ -146,7 +150,7 @@ public class AgendaAdapter extends ResourceCursorAdapter {
             String owner = cursor.getString(AgendaWindowAdapter.INDEX_OWNER_ACCOUNT);
             String organizer = cursor.getString(AgendaWindowAdapter.INDEX_ORGANIZER);
             if (owner.equals(organizer)) {
-                holder.colorChip.setDrawStyle(ColorChipView.DRAW_FULL);
+                //holder.colorChip.setDrawStyle(ColorChipView.DRAW_FULL);
                 holder.title.setTextColor(mStandardColor);
                 holder.when.setTextColor(mStandardColor);
                 holder.where.setTextColor(mStandardColor);
@@ -165,8 +169,11 @@ public class AgendaAdapter extends ResourceCursorAdapter {
         holder.instanceId = cursor.getLong(AgendaWindowAdapter.INDEX_INSTANCE_ID);
 
         /* Calendar Color */
+        int calID = cursor.getInt(AgendaWindowAdapter.INDEX_CALENDAR_ID);
         int color = Utils.getDisplayColorFromColor(cursor.getInt(AgendaWindowAdapter.INDEX_COLOR));
-        holder.colorChip.setColor(color);
+        ((GradientDrawable) holder.colorChip.getBackground()).setColor(color);
+        if(!mCalendarNames.containsKey(calID)) mCalendarNames.put(calID, Utils.getCalendarNameForID(context, cursor.getInt(AgendaWindowAdapter.INDEX_CALENDAR_ID)));
+        holder.colorChip.setText(mCalendarNames.get(calID).substring(0,1));
 
         // What
         String titleString = cursor.getString(AgendaWindowAdapter.INDEX_TITLE);
@@ -234,7 +241,8 @@ public class AgendaAdapter extends ResourceCursorAdapter {
         View selectedMarker;
         LinearLayout textContainer;
         long instanceId;
-        ColorChipView colorChip;
+        //ColorChipView colorChip;
+        TextView colorChip;
         long startTimeMilli;
         boolean allDay;
         boolean grayed;
