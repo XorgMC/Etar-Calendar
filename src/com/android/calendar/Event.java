@@ -61,9 +61,10 @@ public class Event implements Cloneable {
      * sorted correctly with respect to events that are >24 hours (and
      * therefore show up in the allday area).
      */
-    //private static final String SORT_EVENTS_BY ="begin ASC, end DESC, title ASC";
-    private static final String SORT_EVENTS_BY =
-            "begin ASC, end DESC, _id ASC";
+    private static final String SORT_EVENTS_BY_NAME ="begin ASC, end DESC, title ASC";
+    private static final String SORT_EVENTS_BY_ALT = "begin ASC, end DESC, calendar_id ASC";
+    private static final String SORT_EVENTS_BY = "begin ASC, end DESC, _id ASC";
+    //private static final String SORT_EVENTS_BY = "_id ASC, begin ASC, end DESC";
     private static final String SORT_ALLDAY_BY =
             "startDay ASC, endDay DESC, title ASC";
     private static final String DISPLAY_AS_ALLDAY = "dispAllday";
@@ -91,7 +92,8 @@ public class Event implements Cloneable {
             Events.GUESTS_CAN_MODIFY,        // 19
             Instances.ALL_DAY + "=1 OR (" + Instances.END + "-" + Instances.BEGIN + ")>="
                     + DateUtils.DAY_IN_MILLIS + " AS " + DISPLAY_AS_ALLDAY, // 20
-            Instances.DESCRIPTION            //21
+            Instances.DESCRIPTION,           //21
+            Instances.CALENDAR_ID,           //22
     };
     private static final String EVENTS_WHERE = DISPLAY_AS_ALLDAY + "=0";
     private static final String ALLDAY_WHERE = DISPLAY_AS_ALLDAY + "=1";
@@ -117,6 +119,7 @@ public class Event implements Cloneable {
     private static final int PROJECTION_GUESTS_CAN_INVITE_OTHERS_INDEX = 19;
     private static final int PROJECTION_DISPLAY_AS_ALLDAY = 20;
     private static final int PROJECTION_DESCRIPTION_INDEX = 21;
+    private static final int PROJECTION_CALENDAR_ID_INDEX = 22;
     private static String mNoTitleString;
     private static int mNoColorColor;
 
@@ -226,8 +229,31 @@ public class Event implements Cloneable {
                 whereAllday += hideString;
             }
 
+
+            String sortBy;
+            switch (GeneralPreferences.Companion.getSharedPreferences(context).getString(GeneralPreferences.KEY_SORTMODE, GeneralPreferences.DEFAULT_SORTMODE)) {
+                case "1":
+                    sortBy = SORT_EVENTS_BY;
+                    break;
+                case "2":
+                    sortBy = SORT_EVENTS_BY_ALT;
+                    break;
+                case "3":
+                    sortBy = SORT_EVENTS_BY_NAME;
+                    break;
+                case "4":
+                    sortBy = GeneralPreferences.Companion.getSharedPreferences(context).getString(GeneralPreferences.KEY_CUSTSORT, SORT_EVENTS_BY);
+                    break;
+                default:
+                    sortBy = SORT_EVENTS_BY;
+                    break;
+            }
+
             cEvents = instancesQuery(context.getContentResolver(), EVENT_PROJECTION, startDay,
-                    endDay, where, null, SORT_EVENTS_BY);
+                    endDay, where, null, sortBy);
+
+
+
             cAllday = instancesQuery(context.getContentResolver(), EVENT_PROJECTION, startDay,
                     endDay, whereAllday, null, SORT_ALLDAY_BY);
 

@@ -323,6 +323,21 @@
         <item>not_responded</item>
     </string-array>
 
+    <string-array name="preferences_sorting_by_labels">
+        <!-- Default choice -->
+        <item>Start asc., End desc., _id asc.</item>
+        <item>Start asc., End desc., calendar_id asc.</item>
+        <item>Start asc., End desc., title asc.</item>
+        <item>Custom..</item>
+    </string-array>
+
+    <string-array name="preferences_sorting_by_values" translatable="false">
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+        <item>"4"</item>
+    </string-array>
+
     <!-- Recurrence picker: How events are to be repeated.  [CHAR LIMIT = 20] -->
     <string-array name="recurrence_freq">
         <item >REPEAT DAILY</item>

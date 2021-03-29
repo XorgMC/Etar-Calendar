@@ -126,6 +126,23 @@
             app:title="@string/quick_response_settings"
             app:summary="@string/quick_response_settings_summary" />
      </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="preferences_sorting_category"
+        app:title="@string/preferences_sorting_category">
+        <ListPreference
+            app:key="preferences_sorting_by"
+            app:title="@string/preferences_sorting_by"
+            app:entries="@array/preferences_sorting_by_labels"
+            app:entryValues="@array/preferences_sorting_by_values"
+            app:dialogTitle="@string/preferences_sorting_by" />
+
+        <EditTextPreference
+            app:key="preferences_sorting_by_custom"
+            app:title="@string/preferences_sorting_by_custom"
+            app:defaultValue="begin ASC, end DESC, _id ASC" />
+    </PreferenceCategory>
+
     <PreferenceCategory
         app:key="preferences_experimental_category"
         app:title="@string/preferences_experimental_category">

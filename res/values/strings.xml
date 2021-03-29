@@ -569,6 +569,14 @@
     <!-- Experimental settings [CHAR LIMIT = 30]-->
     <string name="preferences_experimental_category">Experimental</string>
 
+    <!-- Sorting settings [CHAR LIMIT = 30]-->
+    <string name="preferences_sorting_category">Sorting</string>
+    <!-- Preference label for what to sort by [CHAR LIMIT = 25] -->
+    <string name="preferences_sorting_by">Sort by</string>
+    <string name="preferences_sorting_by_custom">Custom sort order</string>
+
+
+
     <!-- Reminders settings [CHAR LIMIT = 30]-->
     <!-- Preference label for when to skip reminders [CHAR LIMIT = 25] -->
     <string name="preferences_reminders_responded_label">Skip Reminders</string>

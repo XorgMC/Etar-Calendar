@@ -174,6 +174,11 @@
         <item quantity="one">+1</item>
         <item quantity="other">+<xliff:g id="number">%d</xliff:g></item>
     </plurals>
+    <!-- Sorting settings [CHAR LIMIT = 30]-->
+    <string name="preferences_sorting_category">Ereignis-Sortierung</string>
+    <!-- Preference label for what to sort by [CHAR LIMIT = 25] -->
+    <string name="preferences_sorting_by">Sortiere Events nach</string>
+    <string name="preferences_sorting_by_custom">Eigene Sortierreihenfolge</string>
     <string name="gadget_no_events" msgid="5209110911088302855">"Keine anstehenden Termine"</string>
     <string name="preferences_experimental_category" msgid="8111213192001230350">"Experimentell"</string>
     <string name="preferences_reminders_responded_label" msgid="1196570678238475838">"Erinnerungen überspringen"</string>
