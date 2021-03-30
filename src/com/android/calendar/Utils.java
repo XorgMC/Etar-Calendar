@@ -232,6 +232,15 @@ public class Utils {
         }
     }
 
+    //TODO: Das geht besser!!!
+    public static int getColsForCal(List<Event> evs, int calid) {
+        int count = 0;
+        for(Event ev:evs) {
+            if(ev.calId == calid) count++;
+        }
+        return count;
+    }
+
 
     /**
      * Gets Calendar Name from ID
@@ -251,6 +260,7 @@ public class Utils {
             // Get calendars id
             int calendarIds[] = new int[cursor.getCount()];
             for (int i = 0; i < cursor.getCount(); i++) {
+                Log.d("RSC", String.format("Got calendar name %s for id %d", cursor.getString(1),cursor.getInt(0)));
                 if(cursor.getInt(0) == id) return cursor.getString(1);
                 cursor.moveToNext();
             }

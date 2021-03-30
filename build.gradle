@@ -169,8 +169,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 32
-        versionName "b1.0-05"
+        versionCode 33
+        versionName "b1.0-06"
         //applicationId "de.xorg.rscalendar"
         applicationId "de.xorg.rscalendar"
     }

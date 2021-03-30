@@ -41,6 +41,7 @@ import com.android.calendar.settings.GeneralPreferences;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import de.xorg.rscalendar.R;
@@ -62,8 +63,10 @@ public class Event implements Cloneable {
      * therefore show up in the allday area).
      */
     private static final String SORT_EVENTS_BY_NAME ="begin ASC, end DESC, title ASC";
-    private static final String SORT_EVENTS_BY_ALT = "begin ASC, end DESC, calendar_id ASC";
-    private static final String SORT_EVENTS_BY = "begin ASC, end DESC, _id ASC";
+    private static final String SORT_EVENTS_BY_ALT = "begin ASC, end DESC, calendar_id=11 DESC, calendar_id=9 DESC, calendar_id=10 DESC, title ASC";
+    //private static final String SORT_EVENTS_BY_ALT = "calendar_id<>10 DESC, begin ASC, end DESC";
+    //private static final String SORT_EVENTS_BY_ALT = "(begin - startMinute) ASC, calendar_id<>10 DESC, begin ASC, end DESC";
+    private static final String SORT_EVENTS_BY = "begin ASC, end DESC, _id ASC, title ASC";
     //private static final String SORT_EVENTS_BY = "_id ASC, begin ASC, end DESC";
     private static final String SORT_ALLDAY_BY =
             "startDay ASC, endDay DESC, title ASC";
@@ -129,6 +132,7 @@ public class Event implements Cloneable {
     public CharSequence title;
     public CharSequence location;
     public CharSequence description;
+    public int calId;
     public boolean allDay;
     public String organizer;
     public boolean guestsCanModify;
@@ -157,6 +161,7 @@ public class Event implements Cloneable {
     public Event nextDown;
     private int mColumn;
     private int mMaxColumns;
+    private List<Event> mGroupEvents2 = new ArrayList<>();
 
     public static final Event newInstance() {
         Event e = new Event();
@@ -166,6 +171,7 @@ public class Event implements Cloneable {
         e.color = 0;
         e.location = null;
         e.description = null;
+        e.calId = 0;
         e.allDay = false;
         e.startDay = 0;
         e.endDay = 0;
@@ -371,6 +377,8 @@ public class Event implements Cloneable {
         e.title = cEvents.getString(PROJECTION_TITLE_INDEX);
         e.location = cEvents.getString(PROJECTION_LOCATION_INDEX);
         e.description = cEvents.getString(PROJECTION_DESCRIPTION_INDEX);
+        e.calId = cEvents.getInt(PROJECTION_CALENDAR_ID_INDEX);
+
         e.allDay = cEvents.getInt(PROJECTION_ALL_DAY_INDEX) != 0;
         e.organizer = cEvents.getString(PROJECTION_ORGANIZER_INDEX);
         e.guestsCanModify = cEvents.getInt(PROJECTION_GUESTS_CAN_INVITE_OTHERS_INDEX) != 0;
@@ -467,7 +475,9 @@ public class Event implements Cloneable {
             // the column bit mask, and empty the groupList.
             if (activeList.isEmpty()) {
                 for (Event ev : groupList) {
+                    ev.setGroupEvents(groupList);
                     ev.setMaxColumns(maxCols);
+                    ev.getGroupEvents();
                 }
                 maxCols = 0;
                 colMask = 0;
@@ -488,7 +498,9 @@ public class Event implements Cloneable {
                 maxCols = len;
         }
         for (Event ev : groupList) {
+            ev.setGroupEvents(groupList);
             ev.setMaxColumns(maxCols);
+            ev.getGroupEvents();
         }
     }
 
@@ -542,6 +554,7 @@ public class Event implements Cloneable {
         e.color = color;
         e.location = location;
         e.description = description;
+        e.calId = calId;
         e.allDay = allDay;
         e.startDay = startDay;
         e.endDay = endDay;
@@ -662,6 +675,28 @@ public class Event implements Cloneable {
 
     public void setMaxColumns(int maxColumns) {
         mMaxColumns = maxColumns;
+    }
+
+    public void setGroupEvents(ArrayList<Event> g) {
+        StringBuilder lb = new StringBuilder();
+        for(Event e : g) {
+            lb.append(e.title);
+            lb.append(" ");
+        }
+
+        Log.d("RSC", "setList " + title + "  is " + lb.toString());
+        this.mGroupEvents2.addAll(g);
+    }
+
+    public List<Event> getGroupEvents() {
+        StringBuilder lb = new StringBuilder();
+        for(Event e : this.mGroupEvents2) {
+            lb.append(e.title);
+            lb.append(" ");
+        }
+
+        Log.d("RSC", "List " + title + "  is " + lb.toString());
+        return this.mGroupEvents2;
     }
 
     public long getStartMillis() {

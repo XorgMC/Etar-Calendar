@@ -17,6 +17,7 @@
 package com.android.calendar;
 
 import android.graphics.Rect;
+import android.util.Log;
 
 public class EventGeometry {
     // This is the space from the grid line to the event rectangle.
@@ -74,7 +75,11 @@ public class EventGeometry {
         }
 
         int col = event.getColumn();
-        int maxCols = event.getMaxColumns();
+        int maxTotalCols = event.getMaxColumns();
+        int maxCols = Utils.getColsForCal(event.getGroupEvents(), event.calId);
+        int otherCols = maxTotalCols - maxCols;
+
+        Log.d("RSC", String.format("Got %d cols for group and %d cols total for event %s", maxCols, maxTotalCols, event.title));
         int startHour = startTime / 60;
         int endHour = endTime / 60;
 
@@ -97,8 +102,25 @@ public class EventGeometry {
             event.bottom = event.top + mMinEventHeight;
         }
 
-        float colWidth = (float) (cellWidth - (maxCols + 1) * mCellMargin) / (float) maxCols;
-        event.left = left + col * (colWidth + mCellMargin);
+        float colWidth = (float) ((cellWidth/3) - (maxCols + 1) * mCellMargin) / (float) maxCols;
+        float calMarg;
+        switch(event.calId) {
+            case 11:
+                calMarg = 0;
+                Log.d("RSC", String.format("%s is null-Marginned", event.title));
+                break;
+            case 9:
+                calMarg = (cellWidth/3);
+                Log.d("RSC", String.format("%s is first-Marginned", event.title));
+                break;
+            case 10:
+                calMarg = ((cellWidth/3) * 2);
+                Log.d("RSC", String.format("%s is second-Marginned", event.title));
+                break;
+            default:
+                calMarg = 0;
+        }
+        event.left = left + calMarg + col * (colWidth + mCellMargin);
         event.right = event.left + colWidth;
         return true;
     }
